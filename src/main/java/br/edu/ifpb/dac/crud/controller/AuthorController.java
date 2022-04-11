@@ -34,7 +34,7 @@ public class AuthorController {
 		List<Author> authorList = authorService.findAll();
 		
 		if (authorList.isEmpty()) {
-			return ResponseEntity.notFound().build();
+			return ResponseEntity.noContent().build();
 		}
 		
 		List<AuthorDTO> authorDtoList = converterService.authorToDto(authorList);

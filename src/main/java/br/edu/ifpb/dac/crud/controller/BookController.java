@@ -33,7 +33,7 @@ public class BookController {
 		List<Book> bookList = bookService.findAll();
 		
 		if (bookList.isEmpty()) {
-			return ResponseEntity.notFound().build();
+			return ResponseEntity.noContent().build();
 		}
 		
 		List<BookDTO> bookDtoList = converterService.bookToDto(bookList);
