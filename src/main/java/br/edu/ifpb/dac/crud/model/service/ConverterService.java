@@ -52,7 +52,7 @@ public class ConverterService {
 		return dto;
 	}
 	
-	public Author dtoToAuthor(AuthorDTO dto) {
+	public Author dtoToAuthor(AuthorDTO dto) throws Exception {
 		Date birthDate = conversorDataService.converterData(dto.getBirthDate());
 		
 		Author author = new Author(dto.getName(), birthDate, dto.getLiteraryStyle());

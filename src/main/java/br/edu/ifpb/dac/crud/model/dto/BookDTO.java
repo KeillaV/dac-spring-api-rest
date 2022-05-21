@@ -1,13 +1,28 @@
 package br.edu.ifpb.dac.crud.model.dto;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 public class BookDTO {
  
 	private Integer id;
+	@NotBlank(message = "É obrigatório fornecer o título do livro!")
+	@Size(min = 2, max = 255)
 	private String title;
+	@NotBlank(message = "É obrigatório fornecer a sipnose do livro!")
+	@Size(min = 10, max = 500)
 	private String summary;
+	@NotBlank(message = "É obrigatório fornecer o gênero do livro!")
+	@Size(min = 2, max = 255)
 	private String genre;
+	@NotBlank(message = "É obrigatório fornecer o nome do autor do livro!")
 	private String authorName;
+	@Positive(message = "A quantidade de páginas deve ser um valor positivo!")
 	private int pages;
+	@Positive(message = "Por favor, inserir um ano válido!")
+	@Max(value = 9999, message = "Por favor, inserir um ano válido!")
 	private int yearOfPublication;
 	
 	

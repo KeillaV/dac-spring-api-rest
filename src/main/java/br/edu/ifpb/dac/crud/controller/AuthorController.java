@@ -3,6 +3,8 @@ package br.edu.ifpb.dac.crud.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,7 +59,7 @@ public class AuthorController {
 	
 	
 	@PostMapping
-	public ResponseEntity save(@RequestBody AuthorDTO authorDTO) {
+	public ResponseEntity save(@Valid @RequestBody AuthorDTO authorDTO) {
 		try {
 			Author authorEntity = converterService.dtoToAuthor(authorDTO);
 			authorEntity = authorService.create(authorEntity);
@@ -66,12 +68,12 @@ public class AuthorController {
 			return new ResponseEntity(authorDTO, HttpStatus.CREATED);
 			
 		} catch (Exception e) {
-			return ResponseEntity.badRequest().body("An error occurred while saving author, please try again");
+			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
 	
 	@PutMapping("/{authorId}")
-	public ResponseEntity update(@PathVariable Integer authorId, @RequestBody AuthorDTO authorDTO) {
+	public ResponseEntity update(@PathVariable Integer authorId, @Valid @RequestBody AuthorDTO authorDTO) {
 		
 		if (!authorService.existsById(authorId)) {
 			return ResponseEntity.notFound().build();
@@ -86,7 +88,7 @@ public class AuthorController {
 			return ResponseEntity.ok().body(authorDTO);
 			
 		} catch (Exception e) {
-			return ResponseEntity.badRequest().body("An error occurred while updating author, please try again");
+			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
 	
@@ -104,7 +106,7 @@ public class AuthorController {
 			return ResponseEntity.noContent().build();
 			
 		} catch (Exception e) {
-			return ResponseEntity.badRequest().body("An error occurred while deleting author, please try again");
+			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
 }

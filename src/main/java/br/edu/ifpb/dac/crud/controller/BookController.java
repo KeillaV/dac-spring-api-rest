@@ -2,6 +2,8 @@ package br.edu.ifpb.dac.crud.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +57,7 @@ public class BookController {
 	}
 	
 	@PostMapping
-	public ResponseEntity save(@RequestBody BookDTO bookDTO) {
+	public ResponseEntity save(@Valid @RequestBody BookDTO bookDTO) {
 		try {
 			Book bookEntity = converterService.dtoToBook(bookDTO);
 			bookEntity = bookService.create(bookEntity);
@@ -64,12 +66,12 @@ public class BookController {
 			return new ResponseEntity(bookDTO, HttpStatus.CREATED);
 			
 		} catch (Exception e) {
-			return ResponseEntity.badRequest().body("An error occurred while saving book, please try again");
+			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
 	
 	@PutMapping("/{bookId}")
-	public ResponseEntity update(@PathVariable Integer bookId, @RequestBody BookDTO bookDTO) {
+	public ResponseEntity update(@PathVariable Integer bookId, @Valid @RequestBody BookDTO bookDTO) {
 		
 		if (!bookService.existsById(bookId)) {
 			return ResponseEntity.notFound().build();
@@ -84,7 +86,7 @@ public class BookController {
 			return ResponseEntity.ok().body(bookDTO);
 			
 		} catch (Exception e) {
-			return ResponseEntity.badRequest().body("An error occurred while updating book, please try again");
+			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
 	
@@ -102,7 +104,7 @@ public class BookController {
 			return ResponseEntity.noContent().build();
 			
 		} catch (Exception e) {
-			return ResponseEntity.badRequest().body("An error occurred while deleting book, please try again");
+			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
 	

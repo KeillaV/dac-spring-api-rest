@@ -1,10 +1,21 @@
 package br.edu.ifpb.dac.crud.model.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class AuthorDTO {
 
 	private Integer id;
+	@NotBlank(message = "É obrigatório fornecer o nome do autor!")
+	@Size(min = 2, max = 255)
 	private String name;
+	@NotBlank(message = "É obrigatório fornecer a data de nascimento do autor!")
+	@Pattern(regexp = "^\\d\\d/\\d\\d/\\d\\d\\d\\d$",
+			message = "A data deve estar formatada como 'dd/MM/yyyy'")
 	private String birthDate;
+	@NotBlank(message = "É obrigatório fornecer o estilo literário do autor!")
+	@Size(min = 2, max = 255)
 	private String literaryStyle;
 	
 	public AuthorDTO(String name, String birthDate, String literaryStyle) {

@@ -6,21 +6,20 @@ import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
+import br.edu.ifpb.dac.crud.exception.TimeParseException;
+
 @Service
 public class ConversorDataService {
 	
-	public Date converterData(String data) {
-		SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
-		formatoData.setLenient(false);
+	public Date converterData(String date) throws Exception {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		dateFormat.setLenient(false);
 		
 		try {
-			Date dataConvertida = formatoData.parse(data);
+			Date dataConvertida = dateFormat.parse(date);
 			return dataConvertida;
 		} catch (ParseException e) {
-			System.out.println("Não foi possível converter a data!");
+			throw new TimeParseException(date);
 		}
-		
-		return null;
 	}
-
 }
