@@ -13,7 +13,7 @@ public class Book {
 	private String title;
 	private String summary;
 	private String genre;
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Author author;
 	private int pages;
 	private int yearOfPublication;

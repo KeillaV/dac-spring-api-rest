@@ -2,8 +2,10 @@ package br.edu.ifpb.dac.crud.model.entity;
 
 import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.*;
+
 
 @Entity
 public class Author {
@@ -14,6 +16,9 @@ public class Author {
 	private String name;
 	private Date birthDate;
 	private String literaryStyle;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "AUTHOR_ID")
+	private Set<Book> books;
 	
 	public Author() {
 		
@@ -55,6 +60,15 @@ public class Author {
 
 	public void setLiteraryStyle(String literaryStyle) {
 		this.literaryStyle = literaryStyle;
+	}
+
+	
+	public Set<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(Set<Book> books) {
+		this.books = books;
 	}
 
 	@Override

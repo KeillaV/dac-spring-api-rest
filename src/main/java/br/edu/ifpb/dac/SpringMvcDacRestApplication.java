@@ -23,6 +23,4 @@ public class SpringMvcDacRestApplication implements WebMvcConfigurer {
 			.addMapping("/**")
 			.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH");
 	}
-
-	
 }
