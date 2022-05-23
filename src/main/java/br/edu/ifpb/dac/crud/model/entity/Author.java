@@ -16,7 +16,7 @@ public class Author {
 	private String name;
 	private Date birthDate;
 	private String literaryStyle;
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "AUTHOR_ID")
 	private Set<Book> books;
 	
