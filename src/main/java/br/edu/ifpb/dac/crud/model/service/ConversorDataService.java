@@ -12,7 +12,7 @@ import br.edu.ifpb.dac.crud.exception.TimeParseException;
 public class ConversorDataService {
 	
 	public Date converterData(String date) throws Exception {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
 		
 		try {

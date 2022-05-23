@@ -11,12 +11,16 @@ public class AuthorDTO {
 	@Size(min = 2, max = 255)
 	private String name;
 	@NotBlank(message = "É obrigatório fornecer a data de nascimento do autor!")
-	@Pattern(regexp = "^\\d\\d/\\d\\d/\\d\\d\\d\\d$",
-			message = "A data deve estar formatada como 'dd/MM/yyyy'")
+	@Pattern(regexp = "^\\d\\d\\d\\d-\\d\\d-\\d\\d$",
+			message = "A data deve estar formatada como 'yyyy-MM-dd'")
 	private String birthDate;
 	@NotBlank(message = "É obrigatório fornecer o estilo literário do autor!")
 	@Size(min = 2, max = 255)
 	private String literaryStyle;
+	
+	public AuthorDTO() {
+		
+	}
 	
 	public AuthorDTO(String name, String birthDate, String literaryStyle) {
 		super();

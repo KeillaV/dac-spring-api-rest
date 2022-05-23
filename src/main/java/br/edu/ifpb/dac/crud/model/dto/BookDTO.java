@@ -26,6 +26,10 @@ public class BookDTO {
 	private int yearOfPublication;
 	
 	
+	public BookDTO() {
+		
+	}
+	
 	public BookDTO(String title, String summary, String genre, String authorName, int pages, int yearOfPublication) {
 		this.title = title;
 		this.summary = summary;
