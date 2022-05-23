@@ -34,10 +34,6 @@ public class BookController {
 	public ResponseEntity getAll() {
 		List<Book> bookList = bookService.findAll();
 		
-		if (bookList.isEmpty()) {
-			return ResponseEntity.noContent().build();
-		}
-		
 		List<BookDTO> bookDtoList = converterService.bookToDto(bookList);
 		
 		return ResponseEntity.ok().body(bookDtoList);
