@@ -70,7 +70,6 @@ public class AuthorController {
 	
 	@PutMapping("/{authorId}")
 	public ResponseEntity update(@PathVariable Integer authorId, @Valid @RequestBody AuthorDTO authorDTO) {
-		
 		if (!authorService.existsById(authorId)) {
 			return ResponseEntity.notFound().build();
 		}
